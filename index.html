@@ -140,14 +140,15 @@ li.task input[type="checkbox"] {
 </div>
 
 <script>
+
 const input = document.getElementById('taskInput');  
 const addBtn = document.getElementById('addBtn');   
 const taskList = document.getElementById('taskList'); 
-
+//Saves the task list to localStorage//
 function saveTasks(tasks) {
   localStorage.setItem('todo_tasks', JSON.stringify(tasks));
 }
-
+//loads saved tasks from localStorage//
 function loadTasks() {
   const raw = localStorage.getItem('todo_tasks');
   if (!raw) return [];
@@ -158,7 +159,7 @@ function loadTasks() {
     return [];
   }
 }
-
+//Display all tasks on the sreen//
 function renderTasks(tasks) {
   taskList.innerHTML = ''; 
   tasks.forEach((t, index) => {
@@ -194,10 +195,10 @@ function renderTasks(tasks) {
     taskList.appendChild(li);
   });
 }
-
+//When the page loads, it retrives and show all saved tasks//
 let tasks = loadTasks();
 renderTasks(tasks);
-
+//Adds a new task, saves it, and rerenders the list//
 addBtn.addEventListener('click', () => {
   const text = input.value.trim();
   if (!text) return;          
@@ -207,10 +208,11 @@ addBtn.addEventListener('click', () => {
   input.value = '';
   input.focus();
 });
-
+//Allows adding a task by pressing Enter key//
 input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') addBtn.click();
 });
 </script>
 </body>
 </html>
+
