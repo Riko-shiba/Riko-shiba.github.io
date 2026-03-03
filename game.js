@@ -45,7 +45,7 @@ constructor(type) {
 this.size = 30;
 this.x = Math.random() * (canvas.width - this.size);
 this.y = -this.size;
-this.speed = 5 + Math.random() * 3;
+this.speed = 5 + Math.random() * 3 +　difficultyTimer / 2000;
 this.type = type; // "good" or "bad"
 }
 
@@ -180,4 +180,5 @@ currentState = STATE.PLAYING;
 
 // ===== Start Game Loop =====
 gameLoop();
+
 
