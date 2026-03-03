@@ -67,6 +67,7 @@ let objects = [];
 let score = 0;
 let lives = 3;
 let difficultyTimer = 0;
+let highScore = localStorage.getItem("highScore") || 0;
 
 // ===== Input Handling (Touch & Click) =====
 canvas.addEventListener("touchmove", (e) => {
@@ -145,6 +146,11 @@ objects[i].draw();
 if (checkCollision(player, objects[i])) {
 if (objects[i].type === "good") {
 score += 10;
+   // highscore check
+        if (score > highScore) {
+            highScore = score;
+            localStorage.setItem("highScore", highScore);
+        }
 } else {
 lives--;
 }
@@ -167,6 +173,7 @@ ctx.fillStyle = "white";
 ctx.font = "20px Arial";
 ctx.fillText("Score: " + score, 80, 30);
 ctx.fillText("Lives: " + lives, 80, 60);
+ctx.fillText("High Score: " + highScore, 120, 90);
 }
 
 // ===== Restart =====
@@ -180,5 +187,6 @@ currentState = STATE.PLAYING;
 
 // ===== Start Game Loop =====
 gameLoop();
+
 
 
