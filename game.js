@@ -100,7 +100,12 @@ circle.y + circle.size > rect.y
 // ===== Game Loop =====
 function gameLoop() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
+let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, "#1e3c72");
+    gradient.addColorStop(1, "#2a5298");
 
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 if (currentState === STATE.START) {
 drawText("Tap to Start", canvas.width / 2, canvas.height / 2);
 }
@@ -187,6 +192,7 @@ currentState = STATE.PLAYING;
 
 // ===== Start Game Loop =====
 gameLoop();
+
 
 
 
